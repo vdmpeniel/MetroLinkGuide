@@ -1,14 +1,14 @@
 import DataBaseAccess.DataBaseAccess;
-import DataBaseAccess.MetrolinkDataBaseAccess;
 import DataBaseAccess.Station;
 import DataBaseAccess.Arrival;
 import Timer.Timer;
-import Timer.JavaTime8;
-import UserInterfase.ConsoleUserInterface;
-import UserInterfase.UserInterface;
+import UserInterface.UserInterface;
 
 import java.time.LocalTime;
 import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MetroLinkGuideApp {
     DataBaseAccess dataBaseAccess = null;
@@ -22,7 +22,8 @@ public class MetroLinkGuideApp {
     }
 
     public static void main(String[] args){
-        MetroLinkGuideApp JAD = new MetroLinkGuideApp(new MetrolinkDataBaseAccess(), new ConsoleUserInterface(), new JavaTime8());
+        ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+        MetroLinkGuideApp JAD = (MetroLinkGuideApp) context.getBean("metroLinkGuideApp");
 
         List<Station> stations = JAD.dataBaseAccess.getStations();
         JAD.userInterface.outputStations(stations);

@@ -3,7 +3,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MetrolinkDataBaseAccess implements DataBaseAccess {
+public class MetroLinkDataBaseAccess implements DataBaseAccess {
     private final String DATABASE = "jdbc:sqlite:src\\main\\resources\\metrolink.db";
     private final String SQLITE = "org.sqlite.JDBC";
 

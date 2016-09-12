@@ -3,9 +3,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <!-- A simple bean definition -->
-    <bean id="" class="">
+    <bean id = "metroLinkGuideApp" class = "MetroLinkGuideApp">
+        <constructor-arg name = "dataBaseAccess" ref = "metroLinkDataBaseAccess"/>
+        <constructor-arg name = "userInterface" ref = "consoleUserInterface"/>
+        <constructor-arg name="timer" ref="javaTime8"/>
     </bean>
+
+    <bean id = "metroLinkDataBaseAccess" class = "DataBaseAccess.MetroLinkDataBaseAccess"/>
+    <bean id = "consoleUserInterface" class = "UserInterface.ConsoleUserInterface"/>
+    <bean id = "javaTime8" class = "Timer.JavaTime8"/>
 </beans>

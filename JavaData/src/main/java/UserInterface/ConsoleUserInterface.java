@@ -1,4 +1,4 @@
-package UserInterfase;
+package UserInterface;
 
 import DataBaseAccess.Arrival;
 import DataBaseAccess.Station;
