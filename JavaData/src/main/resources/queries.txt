@@ -1,0 +1,38 @@
+/Mike query
+SELECT 
+	stops.stop_id,
+	stops.stop_lat, 	 
+	stops.stop_lon, 
+	stops.stop_name 
+FROM routes
+JOIN trips ON trips.route_id = routes.route_id
+JOIN stop_times ON stop_times.trip_id = trips.trip_id
+JOIN stops ON stops.stop_id = stop_times.stop_id
+WHERE routes.route_type = 2
+GROUP BY stop_name;
+
+
+//my queries:
+SELECT 	 stop_name 
+FROM stops
+WHERE stop_name like "%METROLINK STATION%";
+
+
+SELECT 	 count(*) 
+FROM stops
+WHERE stop_name like "%METROLINK STATION%";
+
+SELECT stop_times.arrival_time, 
+FROM stop_times 
+JOIN stops ON stop_times.stop_id = stops.stop_id
+WHERE stops.stop_name LIKE UPPER("%Shrewsbury Metrolink%");
+
+
+SELECT trips.route_id, stop_times.arrival_time, trips.trip_headsign 
+FROM stop_times 
+JOIN trips ON stop_times.trip_id = trips.trip_id
+WHERE stop_id = 10633 AND arrival_time > "23:53:00" LIMIT 5;
+
+
+
+
