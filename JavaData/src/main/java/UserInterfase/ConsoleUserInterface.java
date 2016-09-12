@@ -39,7 +39,7 @@ public class ConsoleUserInterface implements UserInterface{
         System.out.println("╚═════════════════════════════════════════════════════════╝");
 
 
-        System.out.println("\n                   *** NEXT ARRIVALS ***");
+        System.out.println("\n                 *** NEXT ARRIVALS ***");
         System.out.println("╔════════╦══════╦══════════════════════════╗");
         System.out.println("  TIME:       ROUTE:   DESTINATION:");
         System.out.println("╠════════╩══════╩══════════════════════════╣");

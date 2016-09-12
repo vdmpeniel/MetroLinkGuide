@@ -3,10 +3,11 @@ import DataBaseAccess.MetrolinkDataBaseAccess;
 import DataBaseAccess.Station;
 import DataBaseAccess.Arrival;
 import Timer.Timer;
-import Timer.Implementation2;
+import Timer.JavaTime8;
 import UserInterfase.ConsoleUserInterface;
 import UserInterfase.UserInterface;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public class MetroLinkGuideApp {
@@ -21,18 +22,17 @@ public class MetroLinkGuideApp {
     }
 
     public static void main(String[] args){
-        MetroLinkGuideApp JAD = new MetroLinkGuideApp(new MetrolinkDataBaseAccess(), new ConsoleUserInterface(), new Implementation2());
+        MetroLinkGuideApp JAD = new MetroLinkGuideApp(new MetrolinkDataBaseAccess(), new ConsoleUserInterface(), new JavaTime8());
 
         List<Station> stations = JAD.dataBaseAccess.getStations();
         JAD.userInterface.outputStations(stations);
-        String time = JAD.timer.getTime();
+        LocalTime time = JAD.timer.getTime();
 
         String userStation = JAD.userInterface.getUserStation();
-        List<Arrival> arrivals = JAD.dataBaseAccess.getArrivals(userStation, time);
+        List<Arrival> arrivals = JAD.dataBaseAccess.getArrivals(userStation, time.toString());
 
         Long timeToNext = JAD.timer.getTimeToNext(arrivals.get(0).getArrivalTime());
         JAD.userInterface.outputArrivals( timeToNext, arrivals);
-
     }
 
 }

@@ -1,5 +1,7 @@
 package Timer;
+import java.time.LocalTime;
+
 public interface Timer {
-    String getTime();
+    LocalTime getTime();
     Long getTimeToNext(String nextArrival);
 }
