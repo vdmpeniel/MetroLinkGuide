@@ -11,9 +11,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MetroLinkGuideApp {
-    DataBaseAccess dataBaseAccess = null;
-    UserInterface userInterface = null;
-    Timer timer = null;
+    private static DataBaseAccess dataBaseAccess;
+    private static UserInterface userInterface;
+    private static Timer timer;
 
     public MetroLinkGuideApp(DataBaseAccess dataBaseAccess, UserInterface userInterface, Timer timer){
         this.dataBaseAccess = dataBaseAccess;
@@ -23,17 +23,16 @@ public class MetroLinkGuideApp {
 
     public static void main(String[] args){
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-        MetroLinkGuideApp JAD = (MetroLinkGuideApp) context.getBean("metroLinkGuideApp");
 
-        List<Station> stations = JAD.dataBaseAccess.getStations();
-        JAD.userInterface.outputStations(stations);
-        LocalTime time = JAD.timer.getTime();
+        List<Station> stations = dataBaseAccess.getStations();
+        userInterface.outputStations(stations);
+        LocalTime time = timer.getTime();
 
-        String userStation = JAD.userInterface.getUserStation();
-        List<Arrival> arrivals = JAD.dataBaseAccess.getArrivals(userStation, time.toString());
+        String userStation = userInterface.getUserStation();
+        List<Arrival> arrivals = dataBaseAccess.getArrivals(userStation, time.toString());
 
-        Long timeToNext = JAD.timer.getTimeToNext(arrivals.get(0).getArrivalTime());
-        JAD.userInterface.outputArrivals( timeToNext, arrivals);
+        Long timeToNext = timer.getTimeToNext(arrivals.get(0).getArrivalTime());
+        userInterface.outputArrivals( timeToNext, arrivals);
     }
 
 }
